@@ -102,3 +102,7 @@ Pastikan Anda telah menginstal perangkat berikut:
    Withdraw
 
    POST :  `http://localhost:3000/api/accounts/:id/withdraw`
+
+   Transfer
+
+   POST :  `http://localhost:3000/api/accounts/:id/transfer`
