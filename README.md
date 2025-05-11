@@ -28,7 +28,10 @@ Pastikan Anda telah menginstal perangkat berikut:
    ```
 2. **Install Depedency:**
    ```bash
-   npm install
+   npm install express
+   ```
+   ```bash
+   npm install --save-dev typescript @types/express ts-node
    ```
    ```bash
    npm install @prisma/client
