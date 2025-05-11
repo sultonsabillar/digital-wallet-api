@@ -1,4 +1,3 @@
-// src/controllers/depositController.ts
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 
@@ -8,7 +7,7 @@ export const balance = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    // Mengambil data akun berdasarkan ID
+    
     const account = await prisma.account.findUnique({
       where: { id: Number(id) },
     });
@@ -17,7 +16,6 @@ export const balance = async (req: Request, res: Response) => {
       return res.status(404).json({ error: 'Akun tidak ditemukan' });
     }
 
-    // Menyusun data untuk dikirimkan
     const accountInfo = {
       name: account.name,
       email: account.email,
