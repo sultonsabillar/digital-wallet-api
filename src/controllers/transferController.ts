@@ -21,7 +21,7 @@ export const transfer = async (req: Request, res: Response) => {
       });
 
       if (!sender) {
-        throw new Error('Akun pengirim tidak ditemukan');
+        return res.status(404).json({ error: 'Akun Pengirim tidak ditemukan' });
       }
 
       const recipient = await tx.account.findUnique({
