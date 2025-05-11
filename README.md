@@ -70,9 +70,11 @@ Pastikan Anda telah menginstal perangkat berikut:
    ├── src
    │   ├── controllers
    │     └── accountController.ts
+   │     └── balanceController.ts
    │     └── depositController.ts
    │   ├── routes
    │     └── accountRoutes.ts
+   │     └── balanceRoutes.ts
    │     └── depositRoutes.ts
    │   └── services
    │     └── server.ts
@@ -92,3 +94,7 @@ Pastikan Anda telah menginstal perangkat berikut:
    Deposit
 
    POST :  `http://localhost:3000/api/accounts/:id/deposit`
+
+   Balance
+
+   GET :  `http://localhost:3000/api/accounts/:id/balance`
