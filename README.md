@@ -72,10 +72,14 @@ Pastikan Anda telah menginstal perangkat berikut:
    │     └── accountController.ts
    │     └── balanceController.ts
    │     └── depositController.ts
+   │     └── transferController.ts
+   │     └── withdrawController.ts
    │   ├── routes
    │     └── accountRoutes.ts
    │     └── balanceRoutes.ts
    │     └── depositRoutes.ts
+   │     └── transferRoutes.ts
+   │     └── withdrawRoutes.ts
    │   └── services
    │     └── server.ts
    ├── .env
@@ -102,3 +106,7 @@ Pastikan Anda telah menginstal perangkat berikut:
    Withdraw
 
    POST :  `http://localhost:3000/api/accounts/:id/withdraw`
+
+   Transfer
+
+   POST :  `http://localhost:3000/api/accounts/:id/transfer`
