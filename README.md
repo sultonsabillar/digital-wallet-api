@@ -13,7 +13,7 @@ Proyek ini adalah API backend untuk sistem dompet digital (e-wallet) yang menyed
 ## Persyaratan
 Pastikan Anda telah menginstal perangkat berikut:
 - Node.js (LTS Version 23.0)
-- Expresss.js
+- Expresss.js 
 - Typescript 
 - PostgreSQL
 
@@ -72,12 +72,14 @@ Pastikan Anda telah menginstal perangkat berikut:
    │     └── accountController.ts
    │     └── balanceController.ts
    │     └── depositController.ts
+   │     └── transactionsController.ts
    │     └── transferController.ts
    │     └── withdrawController.ts
    │   ├── routes
    │     └── accountRoutes.ts
    │     └── balanceRoutes.ts
    │     └── depositRoutes.ts
+   │     └── transactionsRoutes.ts
    │     └── transferRoutes.ts
    │     └── withdrawRoutes.ts
    │   └── services
@@ -110,3 +112,7 @@ Pastikan Anda telah menginstal perangkat berikut:
    Transfer
 
    POST :  `http://localhost:3000/api/accounts/:id/transfer`
+
+   Transactions
+
+   GET :  `http://localhost:3000/api/accounts/:id/transactions`
