@@ -98,3 +98,7 @@ Pastikan Anda telah menginstal perangkat berikut:
    Balance
 
    GET :  `http://localhost:3000/api/accounts/:id/balance`
+
+   Withdraw
+
+   POST :  `http://localhost:3000/api/accounts/:id/withdraw`
