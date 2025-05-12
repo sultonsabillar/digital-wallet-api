@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
-import { PrismaClient, Account } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { depositService } from '../services/depositService';
 
 export const deposit = async (req: Request, res: Response) => {
   const { id } = req.params;
@@ -9,34 +7,19 @@ export const deposit = async (req: Request, res: Response) => {
 
   const depositAmount = parseFloat(amount);
   if (isNaN(depositAmount) || depositAmount <= 0) {
-    return res.status(400).json({ error: 'Jumlah deposit tidak valid' });
+    return res.status(400).json({ error: 'Jumlah deposit tidak boleh kosong' });
   }
 
   try {
-    const account = await prisma.account.findUnique({
-      where: { id: Number(id) },
-    });
-
-    if (!account) {
-      return res.status(404).json({ error: 'Akun tidak ditemukan' });
-    }
-
-    const updatedAccount: Account = await prisma.account.update({
-      where: { id: Number(id) },
-      data: { balance: account.balance + depositAmount },
-    });
-
-    await prisma.transaction.create({
-      data: {
-        amount: depositAmount,
-        type: 'DEPOSIT',
-        accountId: updatedAccount.id,
-      },
-    });
-
-    return res.json({ balance: updatedAccount.balance });
+    const balance = await depositService(Number(id), depositAmount);
+    return res.json({ balance });
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: 'Terjadi kesalahan saat melakukan deposit' });
+    if (error instanceof Error) {
+      if (error.message === 'Akun tidak ditemukan') {
+        return res.status(404).json({ error: 'Akun tidak ditemukan' });
+      }
+      return res.status(500).json({ error: 'Terjadi kesalahan saat melakukan deposit' });
+    }
+    return res.status(500).json({ error: 'Terjadi kesalahan yang tidak terduga' });
   }
 };

@@ -26,18 +26,15 @@ Pastikan Anda telah menginstal perangkat berikut:
    ```bash
    cd digital-wallet-api
    ```
-2. **Install Depedency:**
+2. **Install Dev Depedency:**
    ```bash
-   npm install
+   npm install --save-dev @types/express@4 prisma ts-node typescript
    ```
+3. **Install Depedency:**
    ```bash
-   npm install @prisma/client
+   npm install @prisma/client body-parser chalk date-fns date-fns-tz esbulid express
    ```
-   ```bash
-   npm install prisma --save-dev
-   ```
-
-3. **Setup Database:**
+4. **Setup Database:**
 
    Buat file `.env` masukan konfigurasi berikut
    ```bash
@@ -49,17 +46,17 @@ Pastikan Anda telah menginstal perangkat berikut:
    ```bash
    npx prisma generate
    ```
-4. **Ganti script package.json:**
+5. **Ganti script package.json:**
    ```bash
       "scripts": {
       "start": "ts-node src/services/server.ts"
       }
    ```
-5. **Run Server:**
+6. **Run Server:**
    ```bash
       npm run start
    ```
-6. **File Direktori:**
+7. **File Direktori:**
 
    ```bash
    digital-wallet-api/
@@ -83,15 +80,21 @@ Pastikan Anda telah menginstal perangkat berikut:
    │     └── transferRoutes.ts
    │     └── withdrawRoutes.ts
    │   └── services
-   │     └── server.ts
+   │     └── accountService.ts
+   │     └── balanceService.ts
+   │     └── depositService.ts
+   │     └── transactionsService.ts
+   │     └── transferServices.ts
+   │     └── withdrawServices.ts
    ├── .env
    ├── .gitignore
    ├── package-lock.json
    ├── package.json
    ├── tsconfig.json
+   ├──server.ts
    └── README.md
 
-7. **Postman:**
+8. **Postman:**
 
    Register
    
