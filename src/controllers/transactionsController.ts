@@ -1,26 +1,33 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { transactionsService } from '../services/transactionsServices';
+import { toZonedTime, format } from 'date-fns-tz';
 
 export const transaction = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-
-    const account = await prisma.account.findUnique({
-      where: { id: Number(id) },
-    });
-
-    if (!account) {
-      return res.status(404).json({ error: 'Akun tidak ditemukan' });
-    }
-    const transactions = await prisma.transaction.findMany({
-      where: { accountId: account.id },
-      orderBy: { createdAt: 'desc' }, 
-    });
+  
+    const transactions = await transactionsService(Number(id));
     
-    return res.json({ transactions });
+    const timeZone = 'Asia/Jakarta';
+   
+    const formattedTransactions = transactions.map(transaction => {
+     
+      const zonedDate = toZonedTime(transaction.createdAt, timeZone);
+     
+      const formattedDate = format(zonedDate, 'yyyy-MM-dd HH:mm:ss'); 
+
+      return {
+        ...transaction,
+        createdAt: formattedDate, 
+      };
+    });
+
+    if (formattedTransactions.length === 0) {
+      return res.status(404).json({ error: 'Tidak ada transaksi ditemukan untuk akun ini' });
+    }
+
+    return res.json({ transactions: formattedTransactions });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Terjadi kesalahan saat mengambil riwayat transaksi' });
