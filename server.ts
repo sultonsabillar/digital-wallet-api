@@ -1,5 +1,5 @@
 import express from 'express';
-import chalk from 'chalk'
+import chalk from 'chalk';
 import accountRoutes from './src/routes/accountRoutes';  
 import depositRoutes from './src/routes/depositRoutes'; 
 import balanceRoutes from './src/routes/balanceRoutes';
